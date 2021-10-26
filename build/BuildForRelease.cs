@@ -21,7 +21,7 @@ partial class Build
                 .SetAuthors("Il Harper")
                 .SetCopyright("2021 Il Harper")
                 .SetTitle("Depth Estimate")
-                .SetDescription("Depth Estimate GUI - Windows, Mac, Linux")
+                .SetDescription("Depth Estimate GUI.")
                 .SetRepositoryType("git")
                 .SetRepositoryUrl("https://github.com/depth-estimate-gui/depth-estimate-gui.git")
                 .SetRuntime(Runtime)
