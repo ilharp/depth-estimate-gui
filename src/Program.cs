@@ -1,7 +1,7 @@
 ﻿using System;
 using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Threading;
+using ReactiveUI;
 
 namespace DepthEstimateGui
 {
@@ -18,7 +18,7 @@ namespace DepthEstimateGui
                 .StartWithClassicDesktopLifetime(args);
         }
 
-        public static AppBuilder BuildAvaloniaApp()
+        private static AppBuilder BuildAvaloniaApp()
             => AppBuilder.Configure<App>()
                 .UsePlatformDetect()
                 .UseSkia()
