@@ -3,6 +3,6 @@
              x:Class="DepthEstimateGui.App"
              Name="Depth Estimate">
     <Application.Styles>
-        <FluentTheme Mode="Dark"/>
+        <FluentTheme Mode="Dark" />
     </Application.Styles>
 </Application>
