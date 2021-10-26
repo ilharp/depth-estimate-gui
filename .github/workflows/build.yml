@@ -1,0 +1,36 @@
+name: Build
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Build
+
+    strategy:
+      matrix:
+        target:
+          - '{"rid":"win-x64","os":"windows-latest"}'
+          - '{"rid":"linux-x64","os":"ubuntu-latest"}'
+          - '{"rid":"osx-x64","os":"macos-latest"}'
+        cuda:
+          - '10.2'
+          - '11.1'
+          - 'cpuonly'
+
+    runs-on: ${{ fromJson(matrix.target).os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Build and Pack
+        run: ./build.cmd PackRelease --configuration Release --runtime ${{ fromJson(matrix.target).rid }} --cuda-version ${{ matrix.cuda }}
+
+      - name: Push Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: depth-estimate-gui-${{ fromJson(matrix.target).rid }}-${{ matrix.cuda }}-${{ github.sha }}
+          path: dist/depth-estimate-gui.zip
