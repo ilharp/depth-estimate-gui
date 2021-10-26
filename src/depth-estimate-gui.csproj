@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Project -->
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>DepthEstimateGui</RootNamespace>
+    <OutputType>WinExe</OutputType>
+    <IsPackable>false</IsPackable>
+    <Nullable>enable</Nullable>
+    <ApplicationIcon>..\assets\icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <!-- Include Resources -->
+  <ItemGroup>
+    <EmbeddedResource Include="..\assets\**">
+      <Link>Assets\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <!-- Package References -->
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="0.10.8" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.10.8" />
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.8" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.8" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.Reactive.Linq" Version="5.0.0" />
+  </ItemGroup>
+</Project>
