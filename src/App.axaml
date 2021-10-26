@@ -4,5 +4,6 @@
              Name="Depth Estimate">
     <Application.Styles>
         <FluentTheme Mode="Dark" />
+        <StyleInclude Source="/Styles/Generic.axaml" />
     </Application.Styles>
 </Application>

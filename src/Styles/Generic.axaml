@@ -1,0 +1,8 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style>
+        <Style.Resources>
+            <GeometryDrawing x:Key="Icons.Add" Brush="#FFFFFF" Geometry="M14 7V8H8V14H7V8H1V7H7V1H8V7H14Z" />
+        </Style.Resources>
+    </Style>
+</Styles>
