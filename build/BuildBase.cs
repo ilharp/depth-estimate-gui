@@ -21,7 +21,7 @@ partial class Build : NukeBuild
 
     [Solution] readonly Solution Solution;
     [GitRepository] readonly GitRepository GitRepository;
-    [GitVersion(Framework="net6.0")] readonly GitVersion GitVersion;
+    [GitVersion] readonly GitVersion GitVersion;
 
     AbsolutePath SourceDirectory => RootDirectory / "src";
     AbsolutePath DistDirectory => RootDirectory / "dist";
