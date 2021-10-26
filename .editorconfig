@@ -12,6 +12,9 @@ trim_trailing_whitespace = true
 [*.cs]
 indent_size = 4
 
+[*.{xaml,axaml}]
+indent_size = 4
+
 # Generated code
 [*{_AssemblyInfo.cs,.notsupported.cs}]
 generated_code = true
