@@ -1,0 +1,31 @@
+<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:DepthEstimateGui.Controls">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <controls:DrawingIcon>
+                <controls:DrawingIcon.Icon>
+                    <GeometryDrawing Brush="#222222"
+                                     Geometry="M14 7V8H8V14H7V8H1V7H7V1H8V7H14Z" />
+                </controls:DrawingIcon.Icon>
+            </controls:DrawingIcon>
+        </Border>
+    </Design.PreviewWith>
+    <Style Selector="controls|DrawingIcon">
+        <Setter Property="Width" Value="{TemplateBinding Width}" />
+        <Setter Property="Height" Value="{TemplateBinding Height}" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <DrawingPresenter
+                        Width="{TemplateBinding Width}"
+                        Height="{TemplateBinding Height}"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Drawing="{TemplateBinding Icon}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</Styles>
