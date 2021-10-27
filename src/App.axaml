@@ -3,7 +3,13 @@
              x:Class="DepthEstimateGui.App"
              Name="Depth Estimate">
     <Application.Styles>
+        <!-- Theme Base -->
         <FluentTheme Mode="Dark" />
+
+        <!-- Controls -->
+        <StyleInclude Source="/Controls/DrawingIcon.axaml" />
+
+        <!-- Styles -->
         <StyleInclude Source="/Styles/Generic.axaml" />
     </Application.Styles>
 </Application>
