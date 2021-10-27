@@ -1,0 +1,96 @@
+<ui:MetroWindow xmlns="https://github.com/avaloniaui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:ui="clr-namespace:DepthEstimateGui.Utils.UI"
+                xmlns:windows="clr-namespace:DepthEstimateGui.Windows"
+                xmlns:controls="clr-namespace:DepthEstimateGui.Controls"
+                mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="600"
+                x:Class="DepthEstimateGui.Windows.MainWindow"
+                x:DataType="windows:MainWindowViewModel"
+                Title="Depth Estimate"
+                Icon="resm:DepthEstimateGui.Assets.icon.ico"
+                CanResize="False"
+                WindowStartupLocation="CenterScreen"
+                Width="400" Height="600">
+    <Grid RowDefinitions="Auto,*,Auto">
+        <StackPanel Grid.Row="0" Spacing="12" Margin="24">
+            <StackPanel.Styles>
+                <Style Selector=":is(Control)">
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                </Style>
+            </StackPanel.Styles>
+
+            <Image Source="resm:DepthEstimateGui.Assets.icon.png" Width="200" />
+            <TextBlock Text="Depth Estimate" FontSize="36" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Spacing="8" Margin="12">
+            <StackPanel.Styles>
+                <Style Selector="Button">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="BorderBrush" Value="Transparent" />
+                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                    <Setter Property="VerticalAlignment" Value="Stretch" />
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                    <Setter Property="Padding" Value="8" />
+                </Style>
+
+                <Style Selector="controls|DrawingIcon">
+                    <Setter Property="VerticalAlignment" Value="Top" />
+                    <Setter Property="Margin" Value="10,8,14,0" />
+                    <Setter Property="Width" Value="40" />
+                    <Setter Property="Height" Value="40" />
+                </Style>
+
+                <Style Selector="TextBlock.action-title">
+                    <Setter Property="FontSize" Value="22" />
+                    <Setter Property="TextWrapping" Value="NoWrap" />
+                    <Setter Property="Margin" Value="0,2" />
+                </Style>
+
+                <Style Selector="TextBlock.action-description">
+                    <Setter Property="TextWrapping" Value="Wrap" />
+                    <Setter Property="Margin" Value="0,2" />
+                    <Setter Property="Opacity" Value="0.7" />
+                </Style>
+            </StackPanel.Styles>
+
+            <Button>
+                <Grid
+                    ColumnDefinitions="Auto,Auto">
+                    <controls:DrawingIcon
+                        Grid.Column="0"
+                        Icon="{DynamicResource Icons.Editor}" />
+                    <Grid
+                        Grid.Column="1"
+                        RowDefinitions="Auto,Auto">
+                        <TextBlock
+                            Grid.Row="0"
+                            Classes="action-title"
+                            Text="Editor" />
+                        <TextBlock
+                            Grid.Row="1"
+                            Classes="action-description"
+                            Text="Generate and view depth graphics." />
+                    </Grid>
+                </Grid>
+            </Button>
+        </StackPanel>
+
+        <Grid Grid.Row="2" ColumnDefinitions="*,Auto" ColumnSpan="12">
+            <Grid.Styles>
+                <Style Selector="TextBlock">
+                    <Setter Property="Margin" Value="12" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="Opacity" Value="0.5" />
+                    <Setter Property="FontWeight" Value="Light" />
+                </Style>
+            </Grid.Styles>
+
+            <TextBlock Grid.Column="0" Text="{CompiledBinding Version}" />
+            <TextBlock Grid.Column="1" HorizontalAlignment="Right" Text="2021 Il Harper" />
+        </Grid>
+    </Grid>
+</ui:MetroWindow>
