@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "single": {
+      "commandName": "Project"
+    },
+    "pack": {
+      "commandName": "Executable",
+      "executablePath": "..\\..\\..\\..\\dist\\depth-estimate-gui\\depth-estimate-gui.exe"
+    }
+  }
+}
