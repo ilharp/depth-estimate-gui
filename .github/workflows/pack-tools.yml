@@ -1,10 +1,10 @@
-name: Build
+name: Pack Tools
 
-on: [push, pull_request]
+on: workflow_dispatch
 
 jobs:
   build:
-    name: Build
+    name: Pack Tools
 
     strategy:
       matrix:
@@ -12,6 +12,10 @@ jobs:
           - '{"rid":"win-x64","os":"windows-latest"}'
           - '{"rid":"linux-x64","os":"ubuntu-latest"}'
           - '{"rid":"osx-x64","os":"macos-latest"}'
+        cuda:
+          - '10.2'
+          - '11.1'
+          - 'cpuonly'
 
     runs-on: ${{ fromJson(matrix.target).os }}
 
@@ -32,10 +36,10 @@ jobs:
           include-prerelease: true
 
       - name: Build and Pack
-        run: ./build.cmd PackRelease --configuration Release --runtime ${{ fromJson(matrix.target).rid }}
+        run: ./build.cmd PackTools --configuration Release --runtime ${{ fromJson(matrix.target).rid }} --cuda-version ${{ matrix.cuda }}
 
       - name: Push Artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: gui-${{ fromJson(matrix.target).rid }}-${{ matrix.cuda }}-${{ github.sha }}
-          path: dist/depth-estimate-gui.zip
+          name: tools-${{ fromJson(matrix.target).rid }}-${{ matrix.cuda }}-${{ github.sha }}
+          path: dist/depth-estimate-gui-tools.zip
