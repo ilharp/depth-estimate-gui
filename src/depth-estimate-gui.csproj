@@ -23,6 +23,7 @@
     <PackageReference Include="Avalonia.Desktop" Version="0.10.8" />
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.8" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.8" />
+    <PackageReference Include="CliWrap" Version="3.3.3" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="System.Reactive.Linq" Version="5.0.0" />
   </ItemGroup>
