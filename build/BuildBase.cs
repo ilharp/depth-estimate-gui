@@ -19,8 +19,6 @@ partial class Build : NukeBuild
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
-    [Solution] readonly Solution Solution;
-    [GitRepository] readonly GitRepository GitRepository;
     [GitVersion] readonly GitVersion GitVersion;
 
     AbsolutePath SourceDirectory => RootDirectory / "src";
@@ -40,7 +38,7 @@ partial class Build : NukeBuild
         .Executes(() =>
         {
             DotNetRestore(s => s
-                .SetProjectFile(Solution));
+                .SetProjectFile(SourceDirectory));
         });
 
     Target Compile => _ => _
@@ -48,7 +46,7 @@ partial class Build : NukeBuild
         .Executes(() =>
         {
             DotNetBuild(s => s
-                .SetProjectFile(Solution)
+                .SetProjectFile(SourceDirectory)
                 .SetConfiguration(Configuration)
                 .SetAssemblyVersion(GitVersion.AssemblySemVer)
                 .SetFileVersion(GitVersion.AssemblySemFileVer)
