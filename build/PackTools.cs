@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO.Compression;
 using Nuke.Common;
 using Nuke.Common.IO;
@@ -78,10 +79,17 @@ partial class Build
             CopyFileToDirectory(scriptsDir / "midas_1kgen.py", midasTargetDir);
 
             Logger.Info("Plotting colormaps.");
+
+            string pathValue = Platform is PlatformFamily.Linux or PlatformFamily.OSX ?
+                $"{(ToolsDirectory / "bin")}" :
+                $"{ToolsDirectory};{(ToolsDirectory / "Library" / "bin")};{(ToolsDirectory / "Scripts")}";
+            Logger.Info("Using PATH variable: " + pathValue);
+
             ProcessTasks.StartProcess(
                     ToolsDirectory / (Platform == PlatformFamily.Windows ? "python.exe" : "python"),
                     "cmapgen.py",
-                    scriptsDir)
+                    scriptsDir,
+                    new Dictionary<string, string>() { { "PATH", pathValue } })
                 .AssertZeroExitCode();
             AbsolutePath cmapDir = OutputDirectory / "data" / "cmap";
             EnsureCleanDirectory(cmapDir);
