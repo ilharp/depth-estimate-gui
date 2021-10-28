@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using ReactiveUI;
 
 namespace DepthEstimateGui.Core
@@ -7,11 +8,11 @@ namespace DepthEstimateGui.Core
     {
         public ProcessSettings(
             string core = "MiDaS",
-            string colorMap = "Greys_r",
+            ColorMap? colorMap = null,
             string ext = "png")
         {
             _core = core;
-            _colorMap = colorMap;
+            _colorMap = colorMap ?? ColorMap.MapList.Single(x => x.Name == "Greys_r");
             _ext = ext;
         }
 
@@ -23,9 +24,9 @@ namespace DepthEstimateGui.Core
             set => this.RaiseAndSetIfChanged(ref _core, value);
         }
 
-        private string _colorMap;
+        private ColorMap _colorMap;
 
-        public string ColorMap
+        public ColorMap ColorMap
         {
             get => _colorMap;
             set => this.RaiseAndSetIfChanged(ref _colorMap, value);
@@ -46,18 +47,18 @@ namespace DepthEstimateGui.Core
     {
         public ProcessResult(
             string outputPath,
-            string output,
+            string log,
             int exitCode,
             TimeSpan runTime)
         {
             OutputPath = outputPath;
-            Output = output;
+            Log = log;
             ExitCode = exitCode;
             RunTime = runTime;
         }
 
         public readonly string OutputPath;
-        public readonly string Output;
+        public readonly string Log;
         public readonly int ExitCode;
         public readonly TimeSpan RunTime;
 
