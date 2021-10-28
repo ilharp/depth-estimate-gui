@@ -33,12 +33,10 @@ namespace DepthEstimateGui.Core
     public static class GraphicStorage
     {
         private static readonly string InputDir =
-            Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
-                $"data{Path.DirectorySeparatorChar}inputs{Path.DirectorySeparatorChar}");
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "inputs");
 
         private static readonly string OutputDir =
-            Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
-                $"data{Path.DirectorySeparatorChar}outputs{Path.DirectorySeparatorChar}");
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "outputs");
 
         public static void EnsureDirectoryExists()
         {

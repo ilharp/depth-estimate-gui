@@ -34,13 +34,15 @@ namespace DepthEstimateGui.Core
         private async Task ProcessIntl(ProcessSettings settings)
         {
             bool isWindows = Environment.OSVersion.Platform == PlatformID.Win32NT;
-            string exePostfix = isWindows ? ".exe" : "";
 
             // Prepare paths
             string rootPath = AppDomain.CurrentDomain.BaseDirectory;
-            string pythonPath = Path.Combine(rootPath, $"tools{Path.DirectorySeparatorChar}python" + exePostfix);
-            string corePath = Path.Combine(rootPath,
-                $"tools{Path.DirectorySeparatorChar}{settings.Core}{Path.DirectorySeparatorChar}");
+            string pythonPath = Path.Combine(
+                rootPath,
+                isWindows ?
+                    "tools\\python.exe" :
+                    "tools/bin/python");
+            string corePath = Path.Combine(rootPath, "tools", settings.Core);
             string outputName = $"{Id}.{settings.Ext}";
 
             GraphicStorage.EnsureDirectoryExists();
