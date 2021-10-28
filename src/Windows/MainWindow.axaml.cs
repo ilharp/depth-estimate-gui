@@ -27,5 +27,7 @@ namespace DepthEstimateGui.Windows
     public class MainWindowViewModel : ReactiveObject
     {
         public string Version { get; } = Assembly.GetExecutingAssembly().GetName().Version?.ToString()!;
+
+        public void HandleEditor() => new EditorWindow().Show();
     }
 }

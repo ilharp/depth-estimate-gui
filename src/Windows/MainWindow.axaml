@@ -57,7 +57,7 @@
                 </Style>
             </StackPanel.Styles>
 
-            <Button>
+            <Button Command="{Binding HandleEditor}">
                 <Grid
                     ColumnDefinitions="Auto,Auto">
                     <controls:DrawingIcon

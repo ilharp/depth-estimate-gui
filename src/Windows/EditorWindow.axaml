@@ -1,0 +1,136 @@
+<ui:MetroWindow xmlns="https://github.com/avaloniaui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:ui="clr-namespace:DepthEstimateGui.Utils.UI"
+                xmlns:windows="clr-namespace:DepthEstimateGui.Windows"
+                xmlns:controls="clr-namespace:DepthEstimateGui.Controls"
+                xmlns:core="clr-namespace:DepthEstimateGui.Core"
+                mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+                x:Class="DepthEstimateGui.Windows.EditorWindow"
+                x:DataType="windows:EditorViewModel"
+                Title="Editor - Depth Estimate"
+                Icon="resm:DepthEstimateGui.Assets.icon.ico"
+                WindowStartupLocation="CenterScreen"
+                Width="1280" Height="720"
+                MinWidth="800" MinHeight="600">
+    <Grid ColumnDefinitions="*,300">
+        <Image Grid.Column="0"
+               Source="{CompiledBinding OutputImage}" />
+
+        <Grid Grid.Column="1" RowDefinitions="*,Auto">
+            <ScrollViewer Padding="24">
+                <ScrollViewer.Styles>
+                    <Style Selector="Separator">
+                        <Setter Property="Margin" Value="-4,0" />
+                    </Style>
+
+                    <Style Selector="TextBlock.section">
+                        <Setter Property="FontSize" Value="18" />
+                        <Setter Property="FontWeight" Value="Bold" />
+                    </Style>
+                </ScrollViewer.Styles>
+                <StackPanel Spacing="12">
+                    <Button Command="{Binding HandleOpen}"
+                            HorizontalAlignment="Center">
+                        <Grid ColumnDefinitions="Auto,*">
+                            <controls:DrawingIcon
+                                Grid.Column="0"
+                                Icon="{DynamicResource Icons.Open}" />
+                            <TextBlock Grid.Column="1" Text="Open Image" />
+                        </Grid>
+                    </Button>
+
+                    <Grid Background="#55FFFFFF" Height="100">
+                        <Image Source="{CompiledBinding SourceImage}" />
+                    </Grid>
+
+                    <TextBlock Text="{CompiledBinding Graphic.SourceName}"
+                               FontWeight="Light"
+                               Opacity="0.5" />
+
+                    <Separator />
+
+                    <TextBlock Classes="section" Text="Core" />
+
+                    <RadioButton GroupName="Core" Content="MiDaS"
+                                 IsEnabled="{CompiledBinding IsControlEnabled}"
+                                 IsChecked="{CompiledBinding Settings.Core, Converter={x:Static ui:Converters.StringBoolConverter}, ConverterParameter=MiDaS}" />
+                    <RadioButton GroupName="Core" Content="monodepth2"
+                                 IsEnabled="{CompiledBinding IsControlEnabled}"
+                                 IsChecked="{CompiledBinding Settings.Core, Converter={x:Static ui:Converters.StringBoolConverter}, ConverterParameter=monodepth2}" />
+
+                    <Separator />
+
+                    <TextBlock Classes="section" Text="Color Map" />
+
+                    <ComboBox Items="{x:Static core:ColorMap.MapList}"
+                              IsEnabled="{CompiledBinding IsControlEnabled}"
+                              SelectedItem="{CompiledBinding Settings.ColorMap}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate x:DataType="core:ColorMap">
+                                <Grid>
+                                    <TextBlock Text="{CompiledBinding Name}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                    <Separator />
+
+                    <TextBlock Classes="section" Text="Output Format" />
+
+                    <ComboBox SelectedItem="{CompiledBinding Settings.Ext}"
+                              IsEnabled="{CompiledBinding IsControlEnabled}">
+                        <ComboBox.Items>
+                            <ComboBoxItem>
+                                <x:String>png</x:String>
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                <x:String>jpg</x:String>
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                <x:String>bmp</x:String>
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                <x:String>dib</x:String>
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                <x:String>eps</x:String>
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                <x:String>gif</x:String>
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                <x:String>apng</x:String>
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                <x:String>tiff</x:String>
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                <x:String>webp</x:String>
+                            </ComboBoxItem>
+                        </ComboBox.Items>
+                    </ComboBox>
+
+                    <Separator />
+
+                    <TextBlock Opacity="0.5" Text="" TextWrapping="Wrap" />
+                </StackPanel>
+            </ScrollViewer>
+
+            <StackPanel Grid.Row="1" Spacing="12" Margin="24">
+                <Separator />
+
+                <Grid ColumnDefinitions="*,*" ColumnSpan="12">
+                    <Button Grid.Column="0" Content="Run"
+                            IsEnabled="{CompiledBinding IsControlEnabled}"
+                            Command="{Binding HandleProcess}" />
+                    <Button Grid.Column="1" Content="Save Graph"
+                            IsEnabled="{CompiledBinding IsCompleted}"
+                            Command="{Binding HandleSave}" />
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</ui:MetroWindow>
