@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO.Compression;
 using Nuke.Common;
@@ -85,13 +86,18 @@ partial class Build
                 ? $"{ToolsDirectory / "bin"}:"
                 : $"{ToolsDirectory};{ToolsDirectory / "Library" / "bin"};{ToolsDirectory / "Scripts"};";
             pathValue += Environment.GetEnvironmentVariable("PATH");
+            IDictionary env = Environment.GetEnvironmentVariables();
+            if (env.Contains("Path"))
+                env["Path"] = pathValue;
+            if (env.Contains("PATH"))
+                env["PATH"] = pathValue;
             Logger.Info("Using PATH variable: " + pathValue);
 
             ProcessTasks.StartProcess(
                     ToolsDirectory / (Platform == PlatformFamily.Windows ? "python.exe" : "python"),
                     "cmapgen.py",
                     scriptsDir,
-                    new Dictionary<string, string>() { { "PATH", pathValue } })
+                    env as IReadOnlyDictionary<string, string>)
                 .AssertZeroExitCode();
             AbsolutePath cmapDir = OutputDirectory / "data" / "cmap";
             EnsureCleanDirectory(cmapDir);
