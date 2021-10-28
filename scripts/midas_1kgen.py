@@ -14,8 +14,9 @@ from midas.transforms import Resize, NormalizeImage, PrepareForNet
 
 
 def run():
-    image_name = sys.argv[1]
-    colormap_name = sys.argv[2]
+    input_name = sys.argv[1]
+    output_name = sys.argv[2]
+    colormap_name = sys.argv[3]
 
     if torch.cuda.is_available():
         device = torch.device("cuda")
@@ -54,8 +55,8 @@ def run():
     model.to(device)
 
     data_path = root.parent.parent / "data"
-    input_path = str(data_path / "inputs" / image_name)
-    output_path = str(data_path / "outputs" / image_name)
+    input_path = str(data_path / "inputs" / input_name)
+    output_path = str(data_path / "outputs" / output_name)
 
     img = utils.read_image(input_path)
     img_input = transform({"image": img})["image"]
