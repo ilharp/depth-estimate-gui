@@ -22,7 +22,7 @@ partial class Build
 
             Logger.Info("Ejecting Conda environment.");
             ProcessTasks.StartShell(
-                    $"{(Platform is (PlatformFamily.Linux or PlatformFamily.OSX) ? "sudo " : "")}conda create -q -y -p . python=3.7 pytorch torchvision {(CudaVersion == "cpuonly" ? CudaVersion : "cudatoolkit=" + CudaVersion)} opencv matplotlib timm -c pytorch-lts -c conda-forge",
+                    $"{(Platform is (PlatformFamily.Linux or PlatformFamily.OSX) ? "sudo " : "")}conda create -q -y --copy -p . python=3.7 pytorch torchvision {(CudaVersion == "cpuonly" ? CudaVersion : "cudatoolkit=" + CudaVersion)} opencv matplotlib timm -c pytorch-lts -c conda-forge",
                     ToolsDirectory)
                 .AssertZeroExitCode();
 
