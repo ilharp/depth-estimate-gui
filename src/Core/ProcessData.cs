@@ -41,4 +41,26 @@ namespace DepthEstimateGui.Core
 
         public object Clone() => new ProcessSettings(Core, ColorMap, Ext);
     }
+
+    public class ProcessResult
+    {
+        public ProcessResult(
+            string outputPath,
+            string output,
+            int exitCode,
+            TimeSpan runTime)
+        {
+            OutputPath = outputPath;
+            Output = output;
+            ExitCode = exitCode;
+            RunTime = runTime;
+        }
+
+        public readonly string OutputPath;
+        public readonly string Output;
+        public readonly int ExitCode;
+        public readonly TimeSpan RunTime;
+
+        public string Summary => $"{(ExitCode == 0 ? "Completed" : "Error occurred")} in {RunTime}";
+    }
 }
