@@ -6,9 +6,9 @@ namespace DepthEstimateGui.Core
     public class ProcessSettings : ReactiveObject, ICloneable
     {
         public ProcessSettings(
-            string core,
-            string colorMap,
-            string ext)
+            string core = "MiDaS",
+            string colorMap = "Greys_r",
+            string ext = "png")
         {
             _core = core;
             _colorMap = colorMap;
