@@ -26,7 +26,7 @@ partial class Build
 
         Logger.Info("Configuring privileges.");
         ProcessTasks.StartShell(
-                "chmod -R 777 depth-estimate-gui",
+                "sudo chmod -R 777 depth-estimate-gui",
                 DistDirectory)
             .AssertZeroExitCode();
     }
