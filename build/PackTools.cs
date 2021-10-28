@@ -23,6 +23,12 @@ partial class Build
                     ToolsDirectory)
                 .AssertZeroExitCode();
 
+            if (Platform is PlatformFamily.Linux or PlatformFamily.OSX)
+                ProcessTasks.StartShell(
+                        "ln -s ./bin/python ./python",
+                        ToolsDirectory)
+                    .AssertZeroExitCode();
+
             EnsurePrivilege();
 
             Logger.Info("Downloading core repositories.");
