@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO.Compression;
 using Nuke.Common;
@@ -80,9 +81,10 @@ partial class Build
 
             Logger.Info("Plotting colormaps.");
 
-            string pathValue = Platform is PlatformFamily.Linux or PlatformFamily.OSX ?
-                $"{(ToolsDirectory / "bin")}" :
-                $"{ToolsDirectory};{(ToolsDirectory / "Library" / "bin")};{(ToolsDirectory / "Scripts")}";
+            string pathValue = Platform is PlatformFamily.Linux or PlatformFamily.OSX
+                ? $"{ToolsDirectory / "bin"}:"
+                : $"{ToolsDirectory};{ToolsDirectory / "Library" / "bin"};{ToolsDirectory / "Scripts"};";
+            pathValue += Environment.GetEnvironmentVariable("PATH");
             Logger.Info("Using PATH variable: " + pathValue);
 
             ProcessTasks.StartProcess(
