@@ -68,7 +68,7 @@ namespace DepthEstimateGui.Core
             CommandResult result = await Cli
                 .Wrap(pythonPath)
                 .WithArguments(
-                    $"{(isWindows ? "" : "./")}1kgen.py {InputName} {outputName} {settings.ColorMap}")
+                    $"{(isWindows ? "" : "./")}1kgen.py {InputName} {outputName} {settings.ColorMap.Name}")
                 .WithWorkingDirectory(corePath)
                 .WithEnvironmentVariables(env)
                 .WithValidation(CommandResultValidation.None)
