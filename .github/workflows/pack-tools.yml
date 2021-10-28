@@ -36,10 +36,10 @@ jobs:
           include-prerelease: true
 
       - name: Build and Pack
-        run: ./build.cmd PackTools --configuration Release --runtime ${{ fromJson(matrix.target).rid }} --cuda-version ${{ romJson(matrix.target).cuda }}
+        run: ./build.cmd PackTools --configuration Release --runtime ${{ fromJson(matrix.target).rid }} --cuda-version ${{ fromJson(matrix.target).cuda }}
 
       - name: Push Artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: tools-${{ fromJson(matrix.target).rid }}-${{ romJson(matrix.target).cuda }}-${{ github.sha }}
+          name: tools-${{ fromJson(matrix.target).rid }}-${{ fromJson(matrix.target).cuda }}-${{ github.sha }}
           path: dist/depth-estimate-gui-tools.zip
