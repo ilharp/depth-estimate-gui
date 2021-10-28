@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reactive.Linq;
@@ -31,6 +32,19 @@ namespace DepthEstimateGui.Windows
         {
             AvaloniaXamlLoader.Load(this);
         }
+
+        public static List<string> OutputFormats = new()
+        {
+            "png",
+            "jpg",
+            "bmp",
+            "dib",
+            "eps",
+            "gif",
+            "apng",
+            "tiff",
+            "webp"
+        };
     }
 
     public class EditorViewModel : ReactiveObject

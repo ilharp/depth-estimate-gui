@@ -80,37 +80,9 @@
 
                     <TextBlock Classes="section" Text="Output Format" />
 
-                    <ComboBox SelectedItem="{CompiledBinding Settings.Ext}"
+                    <ComboBox Items="{x:Static windows:EditorWindow.OutputFormats}"
+                              SelectedItem="{CompiledBinding Settings.Ext}"
                               IsEnabled="{CompiledBinding IsControlEnabled}">
-                        <ComboBox.Items>
-                            <ComboBoxItem>
-                                <x:String>png</x:String>
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                <x:String>jpg</x:String>
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                <x:String>bmp</x:String>
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                <x:String>dib</x:String>
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                <x:String>eps</x:String>
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                <x:String>gif</x:String>
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                <x:String>apng</x:String>
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                <x:String>tiff</x:String>
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                <x:String>webp</x:String>
-                            </ComboBoxItem>
-                        </ComboBox.Items>
                     </ComboBox>
 
                     <Separator />
