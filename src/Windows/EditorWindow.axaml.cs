@@ -194,7 +194,10 @@ namespace DepthEstimateGui.Windows
                 Title = "Save Image"
             };
 
-            await dialog.ShowAsync((Window)_view.GetVisualRoot());
+            string result = await dialog.ShowAsync((Window)_view.GetVisualRoot());
+            if (string.IsNullOrWhiteSpace(result)) return;
+
+            File.Copy(_result.OutputPath, result, true);
         }
 
         #endregion
