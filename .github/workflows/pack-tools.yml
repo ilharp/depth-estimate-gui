@@ -9,13 +9,13 @@ jobs:
     strategy:
       matrix:
         target:
-          - '{"rid":"win-x64","os":"windows-latest"}'
-          - '{"rid":"linux-x64","os":"ubuntu-latest"}'
-          - '{"rid":"osx-x64","os":"macos-latest"}'
-        cuda:
-          - '10.2'
-          - '11.1'
-          - 'cpuonly'
+          - '{"rid":"win-x64","os":"windows-latest","cuda":"10.2"}'
+          - '{"rid":"linux-x64","os":"ubuntu-latest","cuda":"10.2"}'
+          - '{"rid":"win-x64","os":"windows-latest","cuda":"11.1"}'
+          - '{"rid":"linux-x64","os":"ubuntu-latest","cuda":"11.1"}'
+          - '{"rid":"win-x64","os":"windows-latest","cuda":"cpuonly"}'
+          - '{"rid":"linux-x64","os":"ubuntu-latest","cuda":"cpuonly"}'
+          - '{"rid":"osx-x64","os":"macos-latest","cuda":"cpuonly"}'
 
     runs-on: ${{ fromJson(matrix.target).os }}
 
@@ -36,10 +36,10 @@ jobs:
           include-prerelease: true
 
       - name: Build and Pack
-        run: ./build.cmd PackTools --configuration Release --runtime ${{ fromJson(matrix.target).rid }} --cuda-version ${{ matrix.cuda }}
+        run: ./build.cmd PackTools --configuration Release --runtime ${{ fromJson(matrix.target).rid }} --cuda-version ${{ romJson(matrix.target).cuda }}
 
       - name: Push Artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: tools-${{ fromJson(matrix.target).rid }}-${{ matrix.cuda }}-${{ github.sha }}
+          name: tools-${{ fromJson(matrix.target).rid }}-${{ romJson(matrix.target).cuda }}-${{ github.sha }}
           path: dist/depth-estimate-gui-tools.zip
