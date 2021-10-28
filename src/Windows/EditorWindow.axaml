@@ -19,29 +19,36 @@
                Source="{CompiledBinding OutputImage}" />
 
         <Grid Grid.Column="1" RowDefinitions="*,Auto">
-            <ScrollViewer Padding="24">
-                <ScrollViewer.Styles>
-                    <Style Selector="Separator">
-                        <Setter Property="Margin" Value="-4,0" />
-                    </Style>
+            <Grid.Styles>
+                <Style Selector="Separator">
+                    <Setter Property="Margin" Value="-4,0" />
+                    <Setter Property="Height" Value="1" />
+                    <Setter Property="Background" Value="#22FFFFFF" />
+                </Style>
 
-                    <Style Selector="TextBlock.section">
-                        <Setter Property="FontSize" Value="18" />
-                        <Setter Property="FontWeight" Value="Bold" />
-                    </Style>
-                </ScrollViewer.Styles>
+                <Style Selector="Button">
+                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                </Style>
+
+                <Style Selector="TextBlock.section">
+                    <Setter Property="FontSize" Value="18" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                </Style>
+            </Grid.Styles>
+
+            <ScrollViewer Padding="24">
                 <StackPanel Spacing="12">
-                    <Button Command="{Binding HandleOpen}"
-                            HorizontalAlignment="Center">
-                        <Grid ColumnDefinitions="Auto,*">
+                    <Button Command="{Binding HandleOpen}">
+                        <Grid ColumnDefinitions="Auto,6,*">
                             <controls:DrawingIcon
                                 Grid.Column="0"
                                 Icon="{DynamicResource Icons.Open}" />
-                            <TextBlock Grid.Column="1" Text="Open Image" />
+                            <TextBlock Grid.Column="2" Text="Open Image" />
                         </Grid>
                     </Button>
 
-                    <Grid Background="#55FFFFFF" Height="100">
+                    <Grid Background="#22FFFFFF" Height="100">
                         <Image Source="{CompiledBinding SourceImage}" />
                     </Grid>
 
@@ -53,12 +60,14 @@
 
                     <TextBlock Classes="section" Text="Core" />
 
-                    <RadioButton GroupName="Core" Content="MiDaS"
-                                 IsEnabled="{CompiledBinding IsControlEnabled}"
-                                 IsChecked="{CompiledBinding Settings.Core, Converter={x:Static ui:Converters.StringBoolConverter}, ConverterParameter=MiDaS}" />
-                    <RadioButton GroupName="Core" Content="monodepth2"
-                                 IsEnabled="{CompiledBinding IsControlEnabled}"
-                                 IsChecked="{CompiledBinding Settings.Core, Converter={x:Static ui:Converters.StringBoolConverter}, ConverterParameter=monodepth2}" />
+                    <StackPanel Spacing="6">
+                        <RadioButton GroupName="Core" Content="MiDaS"
+                                     IsEnabled="{CompiledBinding IsControlEnabled}"
+                                     IsChecked="{CompiledBinding Settings.Core, Converter={x:Static ui:Converters.StringBoolConverter}, ConverterParameter=MiDaS}" />
+                        <RadioButton GroupName="Core" Content="monodepth2"
+                                     IsEnabled="{CompiledBinding IsControlEnabled}"
+                                     IsChecked="{CompiledBinding Settings.Core, Converter={x:Static ui:Converters.StringBoolConverter}, ConverterParameter=monodepth2}" />
+                    </StackPanel>
 
                     <Separator />
 
@@ -69,8 +78,13 @@
                               SelectedItem="{CompiledBinding Settings.ColorMap}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate x:DataType="core:ColorMap">
-                                <Grid>
-                                    <TextBlock Text="{CompiledBinding Name}" />
+                                <Grid ColumnDefinitions="Auto,6,*">
+                                    <Image Grid.Column="0"
+                                           Source="{CompiledBinding Image}"
+                                           Width="40" Height="40" />
+                                    <TextBlock Grid.Column="2"
+                                               Text="{CompiledBinding Name}"
+                                               VerticalAlignment="Center" />
                                 </Grid>
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
@@ -82,25 +96,40 @@
 
                     <ComboBox Items="{x:Static windows:EditorWindow.OutputFormats}"
                               SelectedItem="{CompiledBinding Settings.Ext}"
-                              IsEnabled="{CompiledBinding IsControlEnabled}">
-                    </ComboBox>
+                              IsEnabled="{CompiledBinding IsControlEnabled}" />
 
                     <Separator />
 
-                    <TextBlock Opacity="0.5" Text="" TextWrapping="Wrap" />
+                    <TextBlock Opacity="0.5"
+                               Text="{CompiledBinding ProcessOutput}"
+                               TextWrapping="Wrap" />
                 </StackPanel>
             </ScrollViewer>
 
             <StackPanel Grid.Row="1" Spacing="12" Margin="24">
                 <Separator />
 
-                <Grid ColumnDefinitions="*,*" ColumnSpan="12">
-                    <Button Grid.Column="0" Content="Run"
+                <Grid ColumnDefinitions="*,12,*">
+                    <Button Grid.Column="0"
                             IsEnabled="{CompiledBinding IsControlEnabled}"
-                            Command="{Binding HandleProcess}" />
-                    <Button Grid.Column="1" Content="Save Graph"
+                            Command="{Binding HandleProcess}">
+                        <Grid ColumnDefinitions="Auto,6,*">
+                            <controls:DrawingIcon
+                                Grid.Column="0"
+                                Icon="{DynamicResource Icons.Run}" />
+                            <TextBlock Grid.Column="2" Text="Run" />
+                        </Grid>
+                    </Button>
+                    <Button Grid.Column="2"
                             IsEnabled="{CompiledBinding IsCompleted}"
-                            Command="{Binding HandleSave}" />
+                            Command="{Binding HandleSave}">
+                        <Grid ColumnDefinitions="Auto,6,*">
+                            <controls:DrawingIcon
+                                Grid.Column="0"
+                                Icon="{DynamicResource Icons.Save}" />
+                            <TextBlock Grid.Column="2" Text="Save Graph" />
+                        </Grid>
+                    </Button>
                 </Grid>
             </StackPanel>
         </Grid>
