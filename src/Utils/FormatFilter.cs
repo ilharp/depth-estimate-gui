@@ -9,6 +9,32 @@ namespace DepthEstimateGui.Utils
         {
             new()
             {
+                Name = "All Picture Files",
+                Extensions = new()
+                {
+                    "png",
+                    "bmp",
+                    "dib",
+                    "jpg",
+                    "jpeg",
+                    "jpe",
+                    "jfif",
+                    "dds",
+                    "tif",
+                    "tiff",
+                    "webp"
+                }
+            },
+            new()
+            {
+                Name = "PNG",
+                Extensions = new()
+                {
+                    "png"
+                }
+            },
+            new()
+            {
                 Name = "Bitmap Files",
                 Extensions = new()
                 {
@@ -49,23 +75,6 @@ namespace DepthEstimateGui.Utils
                 Name = "WEBP",
                 Extensions = new()
                 {
-                    "webp"
-                }
-            },
-            new()
-            {
-                Name = "All Picture Files",
-                Extensions = new()
-                {
-                    "bmp",
-                    "dib",
-                    "jpg",
-                    "jpeg",
-                    "jpe",
-                    "jfif",
-                    "dds",
-                    "tif",
-                    "tiff",
                     "webp"
                 }
             },
