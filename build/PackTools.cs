@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO.Compression;
 using System.Linq;
 using Nuke.Common;
 using Nuke.Common.IO;
@@ -111,13 +110,16 @@ partial class Build
             EnsureCleanDirectory(tempDirectory);
             Logger.Info("Cleaning conda cache.");
             ProcessTasks.StartShell(
-                    $"{(Platform is (PlatformFamily.Linux or PlatformFamily.OSX) ? "sudo " : "")}conda clean -a")
+                    $"{(Platform is (PlatformFamily.Linux or PlatformFamily.OSX) ? "sudo " : "")}conda clean -y -a")
                 .AssertZeroExitCode();
 
             Logger.Info("Compressing dist.");
-            CompressionTasks.CompressZip(
-                OutputDirectory,
-                DistDirectory / "depth-estimate-gui-tools.zip",
-                compressionLevel: CompressionLevel.SmallestSize);
+            // CompressionTasks.CompressZip(
+            //     OutputDirectory,
+            //     DistDirectory / "depth-estimate-gui-tools.zip",
+            //     compressionLevel: CompressionLevel.SmallestSize);
+            ProcessTasks.StartShell(
+                    $"7za a {DistDirectory / "depth-estimate-gui-tools.zip"} {OutputDirectory} -mx9")
+                .AssertZeroExitCode();
         });
 }
