@@ -40,6 +40,7 @@ namespace DepthEstimateGui.Core
 
         public static void EnsureDirectoryExists()
         {
+            Directory.CreateDirectory(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data"));
             Directory.CreateDirectory(InputDir);
             Directory.CreateDirectory(OutputDir);
         }
