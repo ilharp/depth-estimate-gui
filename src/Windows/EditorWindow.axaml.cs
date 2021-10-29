@@ -210,7 +210,8 @@ namespace DepthEstimateGui.Windows
             ProcessOutput = result.Summary;
             IsCompleted = true;
             IsSucceeded = result.ExitCode == 0;
-            OutputImage = new(result.OutputPath);
+            if (IsSucceeded) OutputImage = new(result.OutputPath);
+            else OutputImage = null;
         }
 
         public async Task HandleSave()
