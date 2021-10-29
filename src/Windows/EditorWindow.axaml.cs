@@ -25,7 +25,7 @@ namespace DepthEstimateGui.Windows
 
             InitializeComponent();
 
-            this.FindControl<StackPanel>("InputPanel")
+            this.FindControl<Grid>("RootPanel")
                 .AddHandler(DragDrop.DropEvent, HandleInputDrop);
 
 #if DEBUG

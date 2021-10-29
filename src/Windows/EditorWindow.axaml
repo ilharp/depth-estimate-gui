@@ -14,7 +14,10 @@
                 WindowStartupLocation="CenterScreen"
                 Width="1280" Height="720"
                 MinWidth="800" MinHeight="600">
-    <Grid ColumnDefinitions="*,300">
+    <Grid ColumnDefinitions="*,300"
+          Name="RootPanel"
+          DragDrop.AllowDrop="True"
+          Background="Transparent">
         <Image Grid.Column="0"
                Source="{CompiledBinding OutputImage}" />
 
@@ -39,26 +42,22 @@
 
             <ScrollViewer Padding="24">
                 <StackPanel Spacing="12">
-                    <StackPanel Spacing="12"
-                                Name="InputPanel"
-                                DragDrop.AllowDrop="True">
-                        <Button Command="{Binding HandleOpen}" Classes="accent">
-                            <Grid ColumnDefinitions="Auto,6,*">
-                                <controls:DrawingIcon
-                                    Grid.Column="0"
-                                    Icon="{DynamicResource Icons.Open}" />
-                                <TextBlock Grid.Column="2" Text="Open Image" />
-                            </Grid>
-                        </Button>
-
-                        <Grid Background="#22FFFFFF" Height="100">
-                            <Image Source="{CompiledBinding SourceImage}" />
+                    <Button Command="{Binding HandleOpen}" Classes="accent">
+                        <Grid ColumnDefinitions="Auto,6,*">
+                            <controls:DrawingIcon
+                                Grid.Column="0"
+                                Icon="{DynamicResource Icons.Open}" />
+                            <TextBlock Grid.Column="2" Text="Open Image" />
                         </Grid>
+                    </Button>
 
-                        <TextBlock Text="{CompiledBinding Graphic.SourceName}"
-                                   FontWeight="Light"
-                                   Opacity="0.5" />
-                    </StackPanel>
+                    <Grid Background="#22FFFFFF" Height="100">
+                        <Image Source="{CompiledBinding SourceImage}" />
+                    </Grid>
+
+                    <TextBlock Text="{CompiledBinding Graphic.SourceName}"
+                               FontWeight="Light"
+                               Opacity="0.5" />
 
                     <Separator />
 
