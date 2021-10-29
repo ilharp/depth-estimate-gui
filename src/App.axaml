@@ -2,6 +2,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="DepthEstimateGui.App"
              Name="Depth Estimate">
+    <NativeMenu.Menu>
+        <NativeMenu>
+        </NativeMenu>
+    </NativeMenu.Menu>
+
     <Application.Styles>
         <!-- Theme Base -->
         <FluentTheme Mode="Dark" />
