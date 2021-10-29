@@ -20,16 +20,29 @@
                  AcceptsTab="True"
                  CornerRadius="0" />
 
-        <Button Grid.Row="1"
-                HorizontalAlignment="Center"
-                Command="{Binding HandleSave}"
-                Margin="12">
-            <Grid ColumnDefinitions="Auto,6,*">
-                <controls:DrawingIcon
-                    Grid.Column="0"
-                    Icon="{DynamicResource Icons.Save}" />
-                <TextBlock Grid.Column="2" Text="Save" />
-            </Grid>
-        </Button>
+        <Grid Grid.Row="1"
+              HorizontalAlignment="Center"
+              ColumnDefinitions="Auto,Auto">
+            <Button Grid.Column="0"
+                    Command="{Binding HandleSave}"
+                    Margin="6,12">
+                <Grid ColumnDefinitions="Auto,6,*">
+                    <controls:DrawingIcon
+                        Grid.Column="0"
+                        Icon="{DynamicResource Icons.Save}" />
+                    <TextBlock Grid.Column="2" Text="Save" />
+                </Grid>
+            </Button>
+            <Button Grid.Column="1"
+                    Command="{Binding HandleClose}"
+                    Margin="6,12">
+                <Grid ColumnDefinitions="Auto,6,*">
+                    <controls:DrawingIcon
+                        Grid.Column="0"
+                        Icon="{DynamicResource Icons.Ok}" />
+                    <TextBlock Grid.Column="2" Text="Done" />
+                </Grid>
+            </Button>
+        </Grid>
     </Grid>
 </ui:MetroWindow>

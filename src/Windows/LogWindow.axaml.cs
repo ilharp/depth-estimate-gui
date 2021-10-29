@@ -71,5 +71,7 @@ namespace DepthEstimateGui.Windows
                 result,
                 Log);
         }
+
+        public void HandleClose() => _view.Close();
     }
 }
