@@ -39,7 +39,7 @@
 
             <ScrollViewer Padding="24">
                 <StackPanel Spacing="12">
-                    <Button Command="{Binding HandleOpen}">
+                    <Button Command="{Binding HandleOpen}" Classes="accent">
                         <Grid ColumnDefinitions="Auto,6,*">
                             <controls:DrawingIcon
                                 Grid.Column="0"
@@ -106,7 +106,7 @@
                 </StackPanel>
             </ScrollViewer>
 
-            <StackPanel Grid.Row="1" Spacing="12" Margin="24">
+            <StackPanel Grid.Row="1" Spacing="12" Margin="18,8">
                 <Separator />
 
                 <Grid ColumnDefinitions="*,12,*">
