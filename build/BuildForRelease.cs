@@ -23,9 +23,9 @@ partial class Build
                 .SetRepositoryType("git")
                 .SetRepositoryUrl("https://github.com/depth-estimate-gui/depth-estimate-gui.git")
                 .SetRuntime(Runtime)
-                // .SetSelfContained(PublishRelease) // dotnet/sdk/issues/10902
-                .EnablePublishReadyToRun()
-                .EnablePublishTrimmed());
+                .EnableSelfContained()
+                .EnablePublishReadyToRun());
+                // .EnablePublishTrimmed());
         });
 
     Target PackProgram => _ => _
