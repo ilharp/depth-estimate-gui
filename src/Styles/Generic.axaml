@@ -15,9 +15,9 @@
                              Geometry="M4 2V14.4805L12.9146 8.24024L4 2ZM11.1809 8.24024L4.995 12.5684V3.91209L11.1809 8.24024Z" />
             <GeometryDrawing x:Key="Icons.Save" Brush="White"
                              Geometry="M13.353 1.146L14.853 2.646L15 3V14.5L14.5 15H1.5L1 14.5V1.5L1.5 1H13L13.353 1.146ZM2 2V14H14V3.208L12.793 2H11V6H4V2H2ZM8 2V5H10V2H8Z" />
-            <GeometryDrawing x:Key="Icons.Close" Brush="#424242"
+            <GeometryDrawing x:Key="Icons.Close" Brush="White"
                              Geometry="M7.99998 8.70708L11.6464 12.3535L12.3535 11.6464L8.70708 7.99998L12.3535 4.35353L11.6464 3.64642L7.99998 7.29287L4.35353 3.64642L3.64642 4.35353L7.29287 7.99998L3.64642 11.6464L4.35353 12.3535L7.99998 8.70708Z" />
-            <GeometryDrawing x:Key="Icons.Ok" Brush="#424242"
+            <GeometryDrawing x:Key="Icons.Ok" Brush="White"
                              Geometry="M14.4315 3.32316L5.96151 13.3232L5.1708 13.2874L1.8208 8.51736L2.63915 7.94264L5.61697 12.1827L13.6684 2.67684L14.4315 3.32316Z" />
         </Style.Resources>
     </Style>
