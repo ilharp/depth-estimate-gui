@@ -33,7 +33,7 @@ namespace DepthEstimateGui.Windows
             AvaloniaXamlLoader.Load(this);
         }
 
-        public static List<string> OutputFormats = new()
+        public static readonly List<string> OutputFormats = new()
         {
             "png",
             "jpg",

@@ -11,8 +11,10 @@
             </DrawingGroup>
             <GeometryDrawing x:Key="Icons.Open" Brush="White"
                              Geometry="M0.5 14H12.5L12.98 13.63L15.61 6.63L15.13 6H13V3.5L12.5 3H6.70996L5.84998 2.15002L5.5 2H0.5L0 2.5V13.5L0.5 14V14ZM1 3H5.29004L6.15002 3.84998L6.5 4H12V6H8.5L8.15002 6.15002L7.29004 7H2.5L2.03003 7.33997L1.03003 10.42L1 3ZM12.13 13H1.18994L2.85999 8H7.5L7.84998 7.84998L8.70996 7H14.5L12.13 13Z" />
-            <GeometryDrawing x:Key="Icons.Run" Brush="White" Geometry="M4 2V14.4805L12.9146 8.24024L4 2ZM11.1809 8.24024L4.995 12.5684V3.91209L11.1809 8.24024Z"   />
-            <GeometryDrawing x:Key="Icons.Save" Brush="White" Geometry="M13.353 1.146L14.853 2.646L15 3V14.5L14.5 15H1.5L1 14.5V1.5L1.5 1H13L13.353 1.146ZM2 2V14H14V3.208L12.793 2H11V6H4V2H2ZM8 2V5H10V2H8Z"   />
+            <GeometryDrawing x:Key="Icons.Run" Brush="White"
+                             Geometry="M4 2V14.4805L12.9146 8.24024L4 2ZM11.1809 8.24024L4.995 12.5684V3.91209L11.1809 8.24024Z" />
+            <GeometryDrawing x:Key="Icons.Save" Brush="White"
+                             Geometry="M13.353 1.146L14.853 2.646L15 3V14.5L14.5 15H1.5L1 14.5V1.5L1.5 1H13L13.353 1.146ZM2 2V14H14V3.208L12.793 2H11V6H4V2H2ZM8 2V5H10V2H8Z" />
         </Style.Resources>
     </Style>
 </Styles>
