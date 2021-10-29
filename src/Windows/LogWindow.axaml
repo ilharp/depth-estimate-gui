@@ -12,19 +12,18 @@
                 Icon="resm:DepthEstimateGui.Assets.icon.ico"
                 Width="800" Height="450"
                 MinWidth="800" MinHeight="450">
-    <Grid RowDefinitions="*,12,Auto">
+    <Grid RowDefinitions="*,Auto">
         <TextBox Grid.Row="0"
                  Text="{CompiledBinding Log}"
                  IsReadOnly="True"
                  AcceptsReturn="True"
                  AcceptsTab="True"
-                 BorderThickness="0"
                  CornerRadius="0" />
 
-        <Button Grid.Row="2"
+        <Button Grid.Row="1"
                 HorizontalAlignment="Center"
                 Command="{Binding HandleSave}"
-                Margin="24">
+                Margin="12">
             <Grid ColumnDefinitions="Auto,6,*">
                 <controls:DrawingIcon
                     Grid.Column="0"
