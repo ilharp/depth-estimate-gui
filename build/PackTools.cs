@@ -107,6 +107,13 @@ partial class Build
             EnsureCleanDirectory(cmapDir);
             ForceCopyDirectoryRecursively(scriptsDir / "cmap", cmapDir);
 
+            Logger.Info("Cleaning temporary directory.");
+            EnsureCleanDirectory(tempDirectory);
+            Logger.Info("Cleaning conda cache.");
+            ProcessTasks.StartShell(
+                    $"{(Platform is (PlatformFamily.Linux or PlatformFamily.OSX) ? "sudo " : "")}conda clean -a")
+                .AssertZeroExitCode();
+
             Logger.Info("Compressing dist.");
             CompressionTasks.CompressZip(
                 OutputDirectory,
