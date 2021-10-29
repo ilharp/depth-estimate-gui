@@ -113,7 +113,7 @@
             <StackPanel Grid.Row="1" Spacing="12" Margin="18,8">
                 <Separator />
 
-                <Grid ColumnDefinitions="*,12,*">
+                <Grid ColumnDefinitions="*,8,Auto,8,Auto">
                     <Button Grid.Column="0" Classes="accent"
                             IsEnabled="{CompiledBinding IsSettingsControlEnabled}"
                             Command="{Binding HandleProcess}">
@@ -125,7 +125,7 @@
                         </Grid>
                     </Button>
                     <Button Grid.Column="2"
-                            IsEnabled="{CompiledBinding IsCompleted}"
+                            IsEnabled="{CompiledBinding IsSucceeded}"
                             Command="{Binding HandleSave}">
                         <Grid ColumnDefinitions="Auto,6,*">
                             <controls:DrawingIcon
@@ -133,6 +133,19 @@
                                 Icon="{DynamicResource Icons.Save}" />
                             <TextBlock Grid.Column="2" Text="Save Graph" />
                         </Grid>
+                    </Button>
+                    <Button Grid.Column="4"
+                            Command="{x:Static ui:Commands.OpenContextMenuCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
+                            Content="...">
+                        <Button.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem
+                                    IsEnabled="{CompiledBinding IsCompleted}"
+                                    Command="{Binding HandleShowLog}"
+                                    Header="Show Log" />
+                            </ContextMenu>
+                        </Button.ContextMenu>
                     </Button>
                 </Grid>
             </StackPanel>

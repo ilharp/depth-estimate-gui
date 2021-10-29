@@ -158,6 +158,14 @@ namespace DepthEstimateGui.Windows
             set => this.RaiseAndSetIfChanged(ref _isCompleted, value);
         }
 
+        private bool _isSucceeded;
+
+        public bool IsSucceeded
+        {
+            get => _isSucceeded;
+            set => this.RaiseAndSetIfChanged(ref _isSucceeded, value);
+        }
+
         #endregion
 
         #region Command Handlers
@@ -170,6 +178,7 @@ namespace DepthEstimateGui.Windows
             SourceImage = new(Graphic.InputPath);
             OutputImage = null;
             IsCompleted = false;
+            IsSucceeded = false;
         }
 
         public async Task HandleOpen()
@@ -190,6 +199,7 @@ namespace DepthEstimateGui.Windows
         public void HandleProcess()
         {
             IsCompleted = false;
+            IsSucceeded = false;
             ProcessOutput = string.Empty;
             Graphic!.Process((ProcessSettings)Settings.Clone());
         }
@@ -198,7 +208,8 @@ namespace DepthEstimateGui.Windows
         {
             _result = result;
             ProcessOutput = result.Summary;
-            IsCompleted = result.ExitCode == 0;
+            IsCompleted = true;
+            IsSucceeded = result.ExitCode == 0;
             OutputImage = new(result.OutputPath);
         }
 
@@ -227,6 +238,8 @@ namespace DepthEstimateGui.Windows
 
             File.Copy(_result.OutputPath, result, true);
         }
+
+        public void HandleShowLog() => LogWindow.ShowLog(_result?.Log ?? string.Empty, _view);
 
         #endregion
     }
