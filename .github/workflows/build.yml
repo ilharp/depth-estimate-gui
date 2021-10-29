@@ -37,5 +37,5 @@ jobs:
       - name: Push Artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: gui-${{ fromJson(matrix.target).rid }}-${{ matrix.cuda }}-${{ github.sha }}
+          name: gui-${{ fromJson(matrix.target).rid }}-${{ github.sha }}
           path: dist/depth-estimate-gui.zip
