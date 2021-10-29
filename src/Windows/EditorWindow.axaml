@@ -39,22 +39,26 @@
 
             <ScrollViewer Padding="24">
                 <StackPanel Spacing="12">
-                    <Button Command="{Binding HandleOpen}" Classes="accent">
-                        <Grid ColumnDefinitions="Auto,6,*">
-                            <controls:DrawingIcon
-                                Grid.Column="0"
-                                Icon="{DynamicResource Icons.Open}" />
-                            <TextBlock Grid.Column="2" Text="Open Image" />
+                    <StackPanel Spacing="12"
+                                Name="InputPanel"
+                                DragDrop.AllowDrop="True">
+                        <Button Command="{Binding HandleOpen}" Classes="accent">
+                            <Grid ColumnDefinitions="Auto,6,*">
+                                <controls:DrawingIcon
+                                    Grid.Column="0"
+                                    Icon="{DynamicResource Icons.Open}" />
+                                <TextBlock Grid.Column="2" Text="Open Image" />
+                            </Grid>
+                        </Button>
+
+                        <Grid Background="#22FFFFFF" Height="100">
+                            <Image Source="{CompiledBinding SourceImage}" />
                         </Grid>
-                    </Button>
 
-                    <Grid Background="#22FFFFFF" Height="100">
-                        <Image Source="{CompiledBinding SourceImage}" />
-                    </Grid>
-
-                    <TextBlock Text="{CompiledBinding Graphic.SourceName}"
-                               FontWeight="Light"
-                               Opacity="0.5" />
+                        <TextBlock Text="{CompiledBinding Graphic.SourceName}"
+                                   FontWeight="Light"
+                                   Opacity="0.5" />
+                    </StackPanel>
 
                     <Separator />
 

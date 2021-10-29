@@ -6,6 +6,7 @@ using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media.Imaging;
 using Avalonia.VisualTree;
@@ -23,6 +24,10 @@ namespace DepthEstimateGui.Windows
             DataContext = new EditorViewModel(this);
 
             InitializeComponent();
+
+            this.FindControl<StackPanel>("InputPanel")
+                .AddHandler(DragDrop.DropEvent, HandleInputDrop);
+
 #if DEBUG
             this.AttachDevTools();
 #endif
@@ -31,6 +36,15 @@ namespace DepthEstimateGui.Windows
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
+        }
+
+        private void HandleInputDrop(object? sender, DragEventArgs e)
+        {
+            if (e.Data.Contains(DataFormats.Text))
+                (DataContext as EditorViewModel)!.HandleDrop(e.Data.GetText());
+            else if (e.Data.Contains(DataFormats.FileNames))
+                (DataContext as EditorViewModel)!.HandleDrop(
+                    (e.Data.GetFileNames() ?? Array.Empty<string>()).FirstOrDefault());
         }
 
         public static readonly List<string> OutputFormats = new()
@@ -140,6 +154,13 @@ namespace DepthEstimateGui.Windows
 
         #region Command Handlers
 
+        public void HandleDrop(string? path)
+        {
+            if (string.IsNullOrWhiteSpace(path)) return;
+            Graphic = new(path);
+            SourceImage = new(Graphic.InputPath);
+        }
+
         public async Task HandleOpen()
         {
             OpenFileDialog dialog = new()
@@ -150,13 +171,9 @@ namespace DepthEstimateGui.Windows
             };
 
             string[] result = await dialog.ShowAsync((Window)_view.GetVisualRoot());
-            if (!result.Any() ||
-                string.IsNullOrWhiteSpace(result[0])) return;
+            if (!result.Any()) return;
 
-            Graphic = new(result[0]);
-
-            // Load original image
-            SourceImage = new(Graphic.InputPath);
+            HandleDrop(result[0]);
         }
 
         public void HandleProcess()
