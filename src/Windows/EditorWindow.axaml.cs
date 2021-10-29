@@ -68,10 +68,15 @@ namespace DepthEstimateGui.Windows
         {
             _view = view;
 
-            _isControlEnabled = this
+            _isSettingsControlEnabled = this
                 .WhenAnyValue(x => x.Graphic!.IsProcessing)
                 .Select(x => !x)
-                .ToProperty(this, x => x.IsControlEnabled);
+                .ToProperty(this, x => x.IsSettingsControlEnabled);
+
+            _isOpenControlEnabled = this
+                .WhenAnyValue(x => x.IsSettingsControlEnabled)
+                .Select(x => Graphic is null || x)
+                .ToProperty(this, x => x.IsOpenControlEnabled);
         }
 
         #region Core Data
@@ -86,8 +91,7 @@ namespace DepthEstimateGui.Windows
                 if (value == _graphic) return;
                 _graphic?.Dispose();
                 _graphic = value;
-                if (_graphic is not null)
-                    _graphic.ProcessComplete.Subscribe(HandleProcessComplete);
+                _graphic?.ProcessComplete.Subscribe(HandleProcessComplete);
                 this.RaisePropertyChanged();
             }
         }
@@ -138,9 +142,13 @@ namespace DepthEstimateGui.Windows
             set => this.RaiseAndSetIfChanged(ref _processOutput, value);
         }
 
-        private readonly ObservableAsPropertyHelper<bool> _isControlEnabled;
+        private readonly ObservableAsPropertyHelper<bool> _isSettingsControlEnabled;
 
-        public bool IsControlEnabled => _isControlEnabled.Value;
+        public bool IsSettingsControlEnabled => _isSettingsControlEnabled.Value;
+
+        private readonly ObservableAsPropertyHelper<bool> _isOpenControlEnabled;
+
+        public bool IsOpenControlEnabled => _isOpenControlEnabled.Value;
 
         private bool _isCompleted;
 
@@ -157,8 +165,11 @@ namespace DepthEstimateGui.Windows
         public void HandleDrop(string? path)
         {
             if (string.IsNullOrWhiteSpace(path)) return;
+            if (Graphic is { IsProcessing: true }) return;
             Graphic = new(path);
             SourceImage = new(Graphic.InputPath);
+            OutputImage = null;
+            IsCompleted = false;
         }
 
         public async Task HandleOpen()
@@ -187,7 +198,7 @@ namespace DepthEstimateGui.Windows
         {
             _result = result;
             ProcessOutput = result.Summary;
-            IsCompleted = true;
+            IsCompleted = result.ExitCode == 0;
             OutputImage = new(result.OutputPath);
         }
 
