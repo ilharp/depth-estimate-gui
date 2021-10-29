@@ -77,8 +77,8 @@ partial class Build
 
             Logger.Info("Copying OneKey-Generator scripts.");
             AbsolutePath scriptsDir = RootDirectory / "scripts";
-            CopyFileToDirectory(scriptsDir / "monodepth2_1kgen.py", monodepthTargetDir);
-            CopyFileToDirectory(scriptsDir / "midas_1kgen.py", midasTargetDir);
+            CopyFile(scriptsDir / "monodepth2_1kgen.py", monodepthTargetDir / "1kgen.py", FileExistsPolicy.Overwrite);
+            CopyFile(scriptsDir / "midas_1kgen.py", midasTargetDir / "1kgen.py", FileExistsPolicy.Overwrite);
 
             Logger.Info("Plotting colormaps.");
 
