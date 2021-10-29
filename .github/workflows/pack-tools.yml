@@ -51,4 +51,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: tools-${{ fromJson(matrix.target).rid }}-${{ fromJson(matrix.target).cuda }}-${{ github.sha }}
-          path: dist/depth-estimate-gui-tools.zip
+          path: dist/depth-estimate-gui-tools.7z

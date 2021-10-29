@@ -119,7 +119,7 @@ partial class Build
             //     DistDirectory / "depth-estimate-gui-tools.zip",
             //     compressionLevel: CompressionLevel.SmallestSize);
             ProcessTasks.StartShell(
-                    $"7z a {DistDirectory / "depth-estimate-gui-tools.zip"} {OutputDirectory} -mx9")
+                    $"7z a {DistDirectory / "depth-estimate-gui-tools.7z"} {OutputDirectory} -mx9")
                 .AssertZeroExitCode();
         });
 }
