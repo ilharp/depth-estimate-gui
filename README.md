@@ -22,6 +22,8 @@ GUI for generating depth graphics. Use [MiDaS](https://github.com/isl-org/MiDaS)
 
 - [x] Support common image formats for input/output
 
+- [x] Support all color maps from [Matplotlib](https://matplotlib.org/stable/tutorials/colors/colormaps.html)
+
 - [ ] Batch process (TODO)
 
 ## Matrix
