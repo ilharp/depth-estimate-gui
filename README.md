@@ -1,4 +1,5 @@
 > 中文用户可直接左转 [B 站动态](https://t.bilibili.com/587366069405400548)
+> 如果需要多帧/视频的深度图  或需要 AE 插件的话  可以看看 [Auto Depth](https://www.bilibili.com/video/BV1v44y1Y7va)
 
 <div align="center">
 
