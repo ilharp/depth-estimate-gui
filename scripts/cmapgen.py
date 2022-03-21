@@ -34,7 +34,6 @@ target_dir.mkdir(exist_ok=True)
 
 def plot(item):
     plt.imsave(str(target_dir / "{}.png".format(item)), gradient, cmap=item)
-    pass
 
 
 for cmap_item in cmaps:
